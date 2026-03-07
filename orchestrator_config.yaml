@@ -1,0 +1,28 @@
+# --- ORCHESTRATOR CONFIGURATION ---
+# This file centralizes management of all LegalTech modules.
+
+modules:
+  sorter:
+    path: "SORTER/universal_sorter.py"
+    config: "SORTER/config.yaml"
+    description: "Universal document sorting into archive"
+  
+  payments:
+    path: "SORTER_PP/sort_payments.py"
+    description: "Specialized payment sorting"
+    # No external config currently used by this script directly, but can be added here
+  
+  statement:
+    working_dir: "MSP"
+    path: "MSP/process_statement.py"
+    config: "MSP/config.yaml"
+    description: "Bank statement processor (MSP Bank)"
+  index_uin:
+    path: "INDEX UIN/index_uin.py"
+    working_dir: "INDEX UIN"
+    description: "UIN Indexer (Scans ZIP/RAR archives)"
+
+logging:
+  level: "INFO"
+  file: "logs/orchestrator.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

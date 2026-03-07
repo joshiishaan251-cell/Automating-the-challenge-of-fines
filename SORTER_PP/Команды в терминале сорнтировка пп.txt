@@ -1,0 +1,3 @@
+PS C:\Users\Logik\Downloads> C:\Users\Logik\Downloads\sort_payments.py
+
+PS C:\Users\Logik\Downloads> python sort_payments.py
