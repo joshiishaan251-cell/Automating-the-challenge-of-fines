@@ -1,6 +1,6 @@
 scan_paths:
   - "\\\\System13\\y\\Архив Взысканий УФК Москва"
-db_path: "INDEX UIN/uin_index.db"
+db_path: "INDEX_UIN/uin_index.db"
 winrar_path: "C:\\Program Files\\WinRAR\\UnRAR.exe"
 report_output: "reports/UIN_Duplicates_Report.xlsx"
 parallel_workers: 8

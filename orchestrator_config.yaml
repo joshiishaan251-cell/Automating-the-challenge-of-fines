@@ -18,8 +18,8 @@ modules:
     config: "MSP/config.yaml"
     description: "Bank statement processor (MSP Bank)"
   index_uin:
-    path: "INDEX UIN/index_uin.py"
-    working_dir: "INDEX UIN"
+    path: "INDEX_UIN/index_uin.py"
+    working_dir: "INDEX_UIN"
     description: "UIN Indexer (Scans ZIP/RAR archives)"
 
 logging:
