@@ -1,0 +1,50 @@
+# --- UNIVERSAL SORTER CONFIGURATION (OPTIMIZED) ---
+
+# 1. SOURCE FOLDER
+# Folder where you drop new documents for processing
+source_root: "C:\\PATH\\TO\\YOUR\\DOWNLOADS\\fines_payments"
+
+# 2. ARCHIVE PATHS (SEARCH SCOPE)
+# List of root folders. The script scans their depth to build an archive map.
+archive_paths:
+  - "C:\\PATH\\TO\\YOUR\\DOCUMENTS\\Archive_Fines_1"
+  - "C:\\PATH\\TO\\YOUR\\DOCUMENTS\\Archive_Fines_General"
+  - "C:\\PATH\\TO\\YOUR\\DOCUMENTS\\Archive_REJECTIONS"
+
+# 3. TOOLS (ENGINE)
+# Paths to external programs. Required for OCR and PDF processing.
+poppler_path: "C:\\poppler\\Library\\bin\\pdftotext.exe"
+tesseract_path: "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
+
+# 4. SAFETY SETTINGS
+# true  = SIMULATION MODE. Files stay in place, only a CSV report is created.
+# false = PRODUCTION MODE. Files are moved and renamed.
+# RECOMMENDATION: First run should be with true!
+dry_run: false
+
+# 5. REPORT SETTINGS
+csv_encoding: "utf-8" 
+csv_delimiter: ";"
+
+# 6. CACHE SETTINGS (ACCELERATION)
+# Filename where the archive map is saved
+cache_file: "archive_cache.json"
+# Cache TTL in hours.
+# If you manually add a NEW folder to the archive, delete archive_cache.json to trigger a rescan.
+cache_ttl_hours: 24
+
+# 7. STRUCTURE AND NAMING SETTINGS
+# Subfolder inside the case directory where found files will be placed
+target_subfolder: "3 Application"
+
+# Prefix for searching anchor files (naming template). 
+# If empty "", the file will start with a space in some contexts.
+anchor_prefix: "! Collected"
+
+# Suffix added to the filename
+anchor_suffix: "_stamp"
+
+# 8. DISPLAY MODE (SPEED)
+# true  = VERBOSE. Displays table in console (beautiful but slower).
+# false = FAST. Shows only progress bar (maximum speed).
+verbose: false

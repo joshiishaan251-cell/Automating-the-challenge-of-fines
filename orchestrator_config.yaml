@@ -12,15 +12,11 @@ modules:
     description: "Specialized payment sorting"
     # No external config currently used by this script directly, but can be added here
   
-  statement:
-    working_dir: "MSP"
-    path: "MSP/process_statement.py"
-    config: "MSP/config.yaml"
-    description: "Bank statement processor (MSP Bank)"
   index_uin:
     path: "INDEX_UIN/index_uin.py"
     working_dir: "."
     description: "UIN Indexer (Scans ZIP/RAR archives)"
+    
   "1_0":
     path: "1_0/process_resolutions.py"
     working_dir: "1_0"

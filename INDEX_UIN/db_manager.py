@@ -179,7 +179,7 @@ class DBManager:
                     available_ids.append(archive_id)
                 else:
                     new_path = hash_to_new_path.get(stored_hash) if stored_hash else None
-                    moved_to = new_path if new_path else 'путь не найден'
+                    moved_to = new_path if new_path else 'path not found'
                     unavailable_updates.append((moved_to, archive_id))
 
             conn.execute("BEGIN")

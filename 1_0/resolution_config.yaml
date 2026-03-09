@@ -1,0 +1,44 @@
+# --- Paths ---
+# Root folder where the script looks for subfolders like "A1", "B13", etc.
+scan_root: 'C:\PATH\TO\YOUR\SCAN_ROOT'
+
+# Central database for duplicate checking
+central_db_path: '..\INDEX_UIN\uin_index.db'
+
+# --- System Paths ---
+tesseract_cmd: 'C:\Program Files\Tesseract-OCR\tesseract.exe'
+poppler_bin: 'C:\poppler\Library\bin'
+libreoffice_path: 'C:\Program Files\LibreOffice\program\soffice.exe'
+template_path: '.\ShablonZayavlenie.docx'
+template_name: 'ShablonZayavlenie.docx'
+
+# --- Processing Settings ---
+# Folder name patterns: letter + 1 to 3 digits + optional text (case number, etc.)
+folder_pattern: '^[А-ЯA-Z]\d{1,3}.*'
+
+# Number of resolutions to process in a single folder
+resolutions_count: 4
+
+# Whether to perform deep recognition (OCR) if text is not found
+perform_ocr: true
+
+# List of filename prefixes for which OCR is NOT performed
+ocr_skip_patterns:
+  - 'Delivered'
+  - 'delivered'
+  - 'Statement'
+  - 'statement'
+
+# Central index update mode (ask - ask user, always - always, never - never)
+update_index_mode: 'never'
+
+# --- Static data for JSON (fixed paths) ---
+static_data:
+  FolderPathRent: 'C:\PATH\TO\YOUR\DOCUMENTS\RENT'
+  FolderPathChecksASM: 'C:\PATH\TO\YOUR\DOCUMENTS\CHECKS_ASM'
+  FolderPathChecksLKRTITS: 'C:\PATH\TO\YOUR\DOCUMENTS\CHECKS_LKRTITS'
+  FolderPathChecksRTITS: 'C:\PATH\TO\YOUR\DOCUMENTS\CHECKS_RTITS'
+  FolderPathOSAGO: 'C:\PATH\TO\YOUR\DOCUMENTS\OSAGO'
+  FolderPathEGRUL: 'C:\PATH\TO\YOUR\DOCUMENTS\EGRUL'
+  FolderPathLeasing: 'C:\PATH\TO\YOUR\DOCUMENTS\LEASING'
+  FolderPathChecksMTU: 'C:\PATH\TO\YOUR\DOCUMENTS\CHECKS_MTU'

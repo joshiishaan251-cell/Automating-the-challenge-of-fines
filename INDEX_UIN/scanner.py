@@ -14,11 +14,11 @@ logger = logging.getLogger(__name__)
 # ── Compiled patterns (module level for efficiency) ──────────────────────────
 
 # Fix #7: Flexible separator between UIN digits and Russian date.
-# Covers: space, underscore, dash — e.g. "10673...2084 21 июня 2024"
-#                                       or "10673...2084_21_июня_2024"
+# Covers: space, underscore, dash — e.g. "10673...2084 21 june 2024"
+#                                       or "10673...2084_21_june_2024"
 # Note: re.match() anchors at start, so no leading ^ needed.
-# Fix: pattern is all-lowercase; caller must pass .lower() input.
-# re.IGNORECASE has NO effect on Cyrillic — do NOT add it.
+# Regex for Russian months (january, february, etc.) 
+# Required for identifying and skipping Russian payment receipts.
 _RECEIPT_DATE_RE = re.compile(
     r'^[\s_\-]+\d{1,2}[\s_\-]+'
     r'(?:январ\w*|феврал\w*|март\w*|апрел\w*|ма[йя]\w*|июн\w*|июл\w*|'
@@ -37,7 +37,7 @@ class ArchiveScanner:
             ext.lower() if ext.startswith('.') else f'.{ext.lower()}'
             for ext in (file_extensions or [])
         )
-        # Filename prefixes to skip (case-insensitive), e.g. 'Чек_'
+        # Filename prefixes to skip (case-insensitive), e.g. 'Check_'
         self.exclude_prefixes = tuple(
             p.lower() for p in (exclude_prefixes or [])
         )
@@ -59,10 +59,9 @@ class ArchiveScanner:
         """Extract and validate a UIN from a filename.
 
         Returns None (skipped) when:
-          1. Filename starts with an excluded prefix (e.g. 'Чек_')
+          1. Filename starts with an excluded prefix (e.g. 'Check_')
           2. Filename is a receipt: digits followed by Russian date/time
-             e.g. '10673342243451842084 21 июня 2024 15-41-04'
-             or   '10673342243451842084_21_июня_2024_15-41-04'
+             e.g. '10673342243451842084 21 june 2024 15-41-04'
           3. The extracted number doesn't have a known UIN prefix
         """
         # ① Skip by filename pattern (prefix or substring)

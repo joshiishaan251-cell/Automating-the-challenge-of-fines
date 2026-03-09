@@ -32,13 +32,13 @@ class ReportGenerator:
 
             # ── Sheet 1: All UINs ──────────────────────────────────────
             ws_all = wb.active
-            ws_all.title = "Все УИН"
+            ws_all.title = "All UINs"
             ws_all.append([
-                "УИН",
-                "Имя файла в архиве / путь к файлу",
-                "Путь к архиву",
-                "Дата нахождения",
-                "Перемещен"
+                "UIN",
+                "Filename in archive / File path",
+                "Archive path",
+                "Discovery date",
+                "Moved to"
             ])
 
             with self.db_manager._connection() as conn:
@@ -63,12 +63,12 @@ class ReportGenerator:
                         ws_all.append(row)
 
             # ── Sheet 2: Duplicates ────────────────────────────────────
-            ws_dupes = wb.create_sheet("Повторяющиеся УИН")
+            ws_dupes = wb.create_sheet("Duplicate UINs")
             ws_dupes.append([
-                "УИН",
-                "Кол-во повторов",
-                "Места нахождения (Архив -> Файл)",
-                "Перемещен"
+                "UIN",
+                "Repeat count",
+                "Locations (Archive -> File)",
+                "Moved to"
             ])
 
             with self.db_manager._connection() as conn:
@@ -103,11 +103,11 @@ class ReportGenerator:
             os.replace(tmp_path, output_path)
             tmp_path = None  # Mark as consumed so finally doesn't delete it
 
-            logger.info(f"Excel-отчет успешно сохранен: {output_path}")
+            logger.info(f"Excel report successfully saved: {output_path}")
             return True
 
         except Exception as e:
-            logger.error(f"Ошибка при создании Excel-отчета: {e}")
+            logger.error(f"Error creating Excel report: {e}")
             return False
         finally:
             # Clean up temp file if something went wrong before os.replace()
