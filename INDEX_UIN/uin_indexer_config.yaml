@@ -1,6 +1,20 @@
 scan_paths:
-  - "\\\\System13\\y\\Архив Взысканий УФК Москва"
-db_path: "INDEX_UIN/uin_index.db"
-winrar_path: "C:\\Program Files\\WinRAR\\UnRAR.exe"
-report_output: "reports/UIN_Duplicates_Report.xlsx"
+  - '\\System13\y\Архив Взысканий УФК Москва'
+  - 'C:\Users\Logik\Documents\ИП Коротаев ОА'
+winrar_path: 'C:\Program Files\WinRAR\UnRAR.exe'
+report_output: 'UIN_Duplicates_Report.xlsx'
 parallel_workers: 8
+# Extensions of loose files to scan for UINs in their filenames
+# (in addition to ZIP and RAR archives)
+file_extensions:
+  - '.pdf'
+
+# Filenames starting with these prefixes are SKIPPED (case-insensitive)
+# E.g. 'Чек_' files are payment receipts, not UIN documents
+exclude_filename_prefixes:
+  - 'Чек_'   
+  - 'Вручено'
+  - 'Штраф'
+  - '*Штраф*'
+  - '*Чек*'
+

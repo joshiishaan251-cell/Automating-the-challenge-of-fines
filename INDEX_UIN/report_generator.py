@@ -1,91 +1,118 @@
+import os
+import tempfile
 import openpyxl
-from openpyxl.styles import Font, Alignment
 import logging
-from datetime import datetime
 
 logger = logging.getLogger(__name__)
+
+# Fetch this many rows at a time from SQLite
+_CHUNK = 1000
+
 
 class ReportGenerator:
     def __init__(self, db_manager):
         self.db_manager = db_manager
 
     def generate_excel_report(self, output_path):
-        """Generate a dual-sheet Excel report: All UINs and Duplicates."""
+        """
+        Generate a dual-sheet Excel report.
+
+        Fix #6: Saves to a temp file first, then atomically renames to output_path
+        via os.replace(). This prevents a partially-written (corrupt) .xlsx
+        if the process is interrupted mid-save.
+        """
+        report_dir = os.path.dirname(output_path) or '.'
+        tmp_path = None
         try:
+            # Write to a temp file in the same directory so os.replace() is atomic
+            fd, tmp_path = tempfile.mkstemp(dir=report_dir, suffix='.tmp.xlsx')
+            os.close(fd)
+
             wb = openpyxl.Workbook()
-            
-            # Sheet 1: All UINs
+
+            # ── Sheet 1: All UINs ──────────────────────────────────────
             ws_all = wb.active
             ws_all.title = "Все УИН"
-            headers = ["УИН", "Имя файла в архиве", "Путь к архиву", "Дата нахождения"]
-            ws_all.append(headers)
-            
-            # Format headers
-            for cell in ws_all[1]:
-                cell.font = Font(bold=True)
-            
-            # Fetch all occurrences
+            ws_all.append([
+                "УИН",
+                "Имя файла в архиве / путь к файлу",
+                "Путь к архиву",
+                "Дата нахождения",
+                "Перемещен"
+            ])
+
             with self.db_manager._connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute('''
-                    SELECT u.number, o.filename, a.path, o.discovery_date
+                    SELECT
+                        u.number,
+                        o.filename,
+                        a.path,
+                        o.discovery_date,
+                        COALESCE(a.moved_to, '') AS moved_to
                     FROM occurrences o
                     JOIN uins u ON o.uin_id = u.id
                     JOIN archives a ON o.archive_id = a.id
                     ORDER BY u.number
                 ''')
-                for row in cursor.fetchall():
-                    ws_all.append(row)
+                while True:
+                    rows = cursor.fetchmany(_CHUNK)
+                    if not rows:
+                        break
+                    for row in rows:
+                        ws_all.append(row)
 
-            # Sheet 2: Duplicates
+            # ── Sheet 2: Duplicates ────────────────────────────────────
             ws_dupes = wb.create_sheet("Повторяющиеся УИН")
-            ws_dupes.append(["УИН", "Кол-во повторов", "Список локаций (Архив -> Файл)"])
-            
-            for cell in ws_dupes[1]:
-                cell.font = Font(bold=True)
+            ws_dupes.append([
+                "УИН",
+                "Кол-во повторов",
+                "Места нахождения (Архив -> Файл)",
+                "Перемещен"
+            ])
 
             with self.db_manager._connection() as conn:
                 cursor = conn.cursor()
-                # Find duplicates
                 cursor.execute('''
-                    SELECT u.number, COUNT(o.uin_id) as count
+                    SELECT
+                        u.number,
+                        COUNT(*) AS cnt,
+                        GROUP_CONCAT(a.path || ' (' || o.filename || ')', ' | '),
+                        GROUP_CONCAT(
+                            CASE WHEN a.moved_to IS NOT NULL
+                                 THEN a.path || ' → ' || a.moved_to
+                                 ELSE NULL
+                            END, ' | '
+                        )
                     FROM occurrences o
                     JOIN uins u ON o.uin_id = u.id
+                    JOIN archives a ON o.archive_id = a.id
                     GROUP BY o.uin_id
-                    HAVING count > 1
-                    ORDER BY count DESC
+                    HAVING cnt > 1
+                    ORDER BY cnt DESC
                 ''')
-                dupes = cursor.fetchall()
-                
-                for uin_number, count in dupes:
-                    # Get locations for this UIN
-                    cursor.execute('''
-                        SELECT a.path, o.filename
-                        FROM occurrences o
-                        JOIN archives a ON o.archive_id = a.id
-                        JOIN uins u ON o.uin_id = u.id
-                        WHERE u.number = ?
-                    ''', (uin_number,))
-                    locations = [f"{os.path.basename(path)} ({filename})" for path, filename in cursor.fetchall()]
-                    ws_dupes.append([uin_number, count, ", ".join(locations)])
+                while True:
+                    rows = cursor.fetchmany(_CHUNK)
+                    if not rows:
+                        break
+                    for row in rows:
+                        ws_dupes.append(row)
 
-            # Auto-adjust column width
-            for ws in [ws_all, ws_dupes]:
-                for col in ws.columns:
-                    max_length = 0
-                    column = col[0].column_letter
-                    for cell in col:
-                        try:
-                            if len(str(cell.value)) > max_length:
-                                max_length = len(str(cell.value))
-                        except: pass
-                    ws.column_dimensions[column].width = min(max_length + 2, 50)
+            # Save to temp, then atomically replace — no corrupt file on interruption
+            wb.save(tmp_path)
+            os.replace(tmp_path, output_path)
+            tmp_path = None  # Mark as consumed so finally doesn't delete it
 
-            wb.save(output_path)
             logger.info(f"Excel-отчет успешно сохранен: {output_path}")
             return True
+
         except Exception as e:
             logger.error(f"Ошибка при создании Excel-отчета: {e}")
             return False
-
-import os
+        finally:
+            # Clean up temp file if something went wrong before os.replace()
+            if tmp_path and os.path.exists(tmp_path):
+                try:
+                    os.remove(tmp_path)
+                except OSError:
+                    pass

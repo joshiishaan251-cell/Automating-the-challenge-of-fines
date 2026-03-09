@@ -1,0 +1,60 @@
+2026-03-07 23:48:27,182 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-07 23:48:27,182 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in INDEX_UIN
+2026-03-07 23:48:27,304 - Orchestrator - ERROR - Module 'index_uin' failed with return code 1.
+2026-03-07 23:48:51,375 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-07 23:48:51,375 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in INDEX_UIN
+2026-03-07 23:48:51,906 - Orchestrator - ERROR - Module 'index_uin' failed with return code 1.
+2026-03-07 23:49:13,715 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-07 23:49:13,715 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-07 23:49:26,227 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 00:34:31,812 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 00:34:31,812 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 00:34:33,184 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 00:44:33,448 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 00:44:33,448 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 00:44:41,913 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 01:22:03,479 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 01:22:03,479 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 01:22:04,047 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 01:22:31,534 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 01:22:31,534 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 01:22:35,340 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 01:31:36,712 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 01:31:36,712 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 01:33:20,079 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 01:34:40,986 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 01:34:40,986 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 01:36:21,239 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 01:38:00,319 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 01:38:00,319 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 01:39:39,356 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 01:59:50,593 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 01:59:50,594 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 02:01:29,006 - Orchestrator - ERROR - Module 'index_uin' failed with return code 1.
+2026-03-08 02:02:36,800 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 02:02:36,800 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 02:04:11,846 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 02:26:03,451 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 02:26:03,451 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 02:27:39,077 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 02:34:22,100 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 02:34:22,100 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 02:35:46,592 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 02:40:25,137 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 02:40:25,138 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 02:42:12,865 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 14:20:20,430 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 14:20:20,431 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 14:21:49,424 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 14:35:18,873 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 14:35:18,873 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 14:39:07,514 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 14:43:53,344 - Orchestrator - INFO - Starting module: index_uin (UIN Indexer (Scans ZIP/RAR archives))
+2026-03-08 14:43:53,345 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\index_uin.py in .
+2026-03-08 14:45:58,565 - Orchestrator - INFO - Module 'index_uin' finished successfully.
+2026-03-08 19:00:03,093 - Orchestrator - INFO - Starting module: payments (Specialized payment sorting)
+2026-03-08 19:00:03,093 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\SORTER_PP\sort_payments.py in SORTER_PP
+2026-03-08 19:00:03,523 - Orchestrator - INFO - Module 'payments' finished successfully.
+2026-03-08 19:39:17,552 - Orchestrator - INFO - Starting module: 1_0 (Resolution processing (recognizing UIN, date, veh))
+2026-03-08 19:39:17,552 - Orchestrator - INFO - Executing: C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\1_0\process_resolutions.py in 1_0
+2026-03-08 19:40:25,854 - Orchestrator - INFO - Module '1_0' finished successfully.

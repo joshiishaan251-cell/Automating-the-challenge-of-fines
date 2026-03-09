@@ -18,7 +18,7 @@ class TestArchiveScanner(unittest.TestCase):
         self.zip_path = self.test_dir / "test_archive.zip"
         with zipfile.ZipFile(self.zip_path, 'w') as zf:
             zf.writestr("10673342253419066540.pdf", "data")
-            zf.writestr("Постановление 20673342253419066541.pdf", "data")
+            zf.writestr("Постановление 18873342253419066541.pdf", "data")
             zf.writestr("other.txt", "data")
 
     def tearDown(self):
@@ -35,7 +35,7 @@ class TestArchiveScanner(unittest.TestCase):
         # Check if both UINs are found
         uin_list = [u['number'] for u in uins]
         self.assertIn("10673342253419066540", uin_list)
-        self.assertIn("20673342253419066541", uin_list)
+        self.assertIn("18873342253419066541", uin_list)
         self.assertEqual(len(uins), 2)
 
     def test_regex_matching(self):

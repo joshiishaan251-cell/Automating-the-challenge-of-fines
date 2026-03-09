@@ -1,0 +1,45 @@
+# --- Пути ---
+# Корневая папка, где скрипт ищет подпапки типа "А1", "Б13" и т.д.
+scan_root: 'C:\Users\Logik\Documents\0_МТУР'
+
+# Центральная база данных для проверки дублей
+central_db_path: 'C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\INDEX_UIN\uin_index.db'
+
+# --- Системные пути ---
+tesseract_cmd: 'C:\Program Files\Tesseract-OCR\tesseract.exe'
+poppler_bin: 'C:\poppler\Library\bin'
+libreoffice_path: 'C:\Program Files\LibreOffice\program\soffice.exe'
+template_path: 'C:\Users\Logik\Downloads\Antigravity\Automating the challenge of fines\1_0\ShablonZayavlenie.docx'
+template_name: 'ShablonZayavlenie.docx'
+
+# --- Настройки обработки ---
+# Маски имен папок: буква + от 1 до 3 цифр + опционально любой текст (номер дела и т.д.)
+folder_pattern: '^[А-Я]\d{1,3}.*'
+
+# Кол-во постановлений для обработки в одной папке
+resolutions_count: 4
+
+# Выполнять ли глубокое распознавание (OCR) если текст не найден
+perform_ocr: true
+
+# Список префиксов имён файлов, для которых OCR НЕ выполняется
+# Файл "Вручено ... .pdf" — это не постановление, OCR не нужен
+ocr_skip_patterns:
+  - 'Вручено'
+  - 'вручено'
+  - 'Заявление'
+  - 'заявление'
+
+# Занесение в центральный индекс при обработке (ask - спрашивать, always - всегда, never - никогда)
+update_index_mode: 'never'
+
+# --- Статические данные для JSON (фиксированные пути) ---
+static_data:
+  FolderPathRent: 'C:\Users\Logik\Documents\ИП Коротаев ОА\АМ АРЕНДА ИП КОРОТАЕВ ОА'
+  FolderPathChecksASM: 'C:\Users\Logik\Documents\ИП Коротаев ОА\АМ ЧЕКИ АС МОСКВЫ ИП КОРОТАЕВ ОА'
+  FolderPathChecksLKRTITS: 'C:\Users\Logik\Documents\ИП Коротаев ОА\АМ ЛК РТИС ИП КОРОТАЕВ ОА'
+  FolderPathChecksRTITS: 'C:\Users\Logik\Documents\ИП Коротаев ОА\АМ ЧЕКИ РТИТС КОРОТАЕВ ОА'
+  FolderPathOSAGO: 'C:\Users\Logik\Documents\ИП Коротаев ОА\АМ ОСАГО ИП КОРОТАЕВ ОА'
+  FolderPathEGRUL: 'C:\Users\Logik\Documents\ИП Коротаев ОА\АМ ЕГРЮЛ КОРОТАЕВ ОА'
+  FolderPathLeasing: 'C:\Users\Logik\Documents\ИП Коротаев ОА\АМ ЛИЗИНГ ИП КОРОТАЕВ ОА'
+  FolderPathChecksMTU: 'C:\Users\Logik\Documents\ИП Коротаев ОА\АМ ЧЕКИ МТУ ИП КОРОТАЕВ ОА'

@@ -1,5 +1,6 @@
 import unittest
 import os
+import shutil
 import sqlite3
 import sys
 
@@ -16,11 +17,17 @@ class TestDBManager(unittest.TestCase):
         self.db = DBManager(self.db_path)
 
     def tearDown(self):
-        # Explicitly delete to force close if needed
+        import gc, time
         del self.db
+        gc.collect()
+        time.sleep(0.3)
         try:
             if os.path.exists(self.db_path):
                 os.remove(self.db_path)
+            wal = self.db_path + '-wal'
+            shm = self.db_path + '-shm'
+            if os.path.exists(wal): os.remove(wal)
+            if os.path.exists(shm): os.remove(shm)
         except PermissionError:
             pass
 
@@ -38,20 +45,22 @@ class TestDBManager(unittest.TestCase):
         conn.close()
 
     def test_add_uin_occurrence(self):
-        archive_id = self.db.get_or_create_archive("\\\\System13\\y\\archive1.zip", "hash123")
-        self.db.add_uin_occurrence("10673342253419066540", archive_id, "doc1.pdf")
+        archive_id, _ = self.db.get_or_update_archive_atomic("\\\\System13\\y\\archive1.zip", "hash123")
+        self.db.add_uin_occurrences_batch(
+            [{'number': '10673342253419066540', 'filename': 'doc1.pdf'}],
+            archive_id
+        )
         
         # Verify
-        conn = sqlite3.connect(self.db_path)
-        cursor = conn.cursor()
-        
-        cursor.execute("SELECT number FROM uins")
-        self.assertEqual(cursor.fetchone()[0], "10673342253419066540")
-        
-        cursor.execute("SELECT filename FROM occurrences")
-        self.assertEqual(cursor.fetchone()[0], "doc1.pdf")
-        
-        conn.close()
+        with sqlite3.connect(self.db_path) as conn:
+            self.assertEqual(
+                conn.execute("SELECT number FROM uins").fetchone()[0],
+                "10673342253419066540"
+            )
+            self.assertEqual(
+                conn.execute("SELECT filename FROM occurrences").fetchone()[0],
+                "doc1.pdf"
+            )
 
 if __name__ == "__main__":
     unittest.main()

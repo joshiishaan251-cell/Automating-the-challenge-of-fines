@@ -19,8 +19,12 @@ modules:
     description: "Bank statement processor (MSP Bank)"
   index_uin:
     path: "INDEX_UIN/index_uin.py"
-    working_dir: "INDEX_UIN"
+    working_dir: "."
     description: "UIN Indexer (Scans ZIP/RAR archives)"
+  "1_0":
+    path: "1_0/process_resolutions.py"
+    working_dir: "1_0"
+    description: "Resolution processing (recognizing UIN, date, veh)"
 
 logging:
   level: "INFO"
